@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Demo: Make a choropleth map</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      h2,
+      h3 {
+        margin: 10px;
+        font-size: 1.2em;
+      }
+      h3 {
+        font-size: 1em;
+      }
+      p {
+        font-size: 0.85em;
+        margin: 10px;
+        text-align: left;
+      }
+      .map-overlay {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.8);
+        margin-right: 20px;
+        font-family: Arial, sans-serif;
+        overflow: auto;
+        border-radius: 3px;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      #features {
+        top: 0;
+        height: 100px;
+        margin-top: 20px;
+        width: 250px;
+      }
+      #legend {
+        padding: 10px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        line-height: 18px;
+        height: 100px;
+        margin-bottom: 40px;
+        width: 150px;
+      }
+      .legend-key {
+        display: inline-block;
+        border-radius: 20%;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div class="map-overlay" id="features">
+      <h2>Coca Cultivation 2019</h2>
+      <div id="pd"><p>By hectares</p></div>
+    </div>
+    <div class="map-overlay" id="legend"></div>
+
+    <script>
+      // define access token
+      mapboxgl.accessToken = 'pk.eyJ1IjoiZGFsdG9ud2IiLCJhIjoiOWdSSXFQSSJ9.HZyjh4g3TAAOAncwelv9Vw';
+
+      //create map
+      var map = new mapboxgl.Map({
+        container: 'map', // container id
+        zoom: 5,
+center: [-73.5089976, 4.5673309],
+        style: 'mapbox://styles/daltonwb/ckqu8i48x07tb18lct794qcl4' // map style URL from Mapbox Studio
+      });
+
+      // wait for map to load before adjusting it
+      map.on('load', function () {
+        // make a pointer cursor
+        map.getCanvas().style.cursor = 'default';
+
+        // define layer names
+        var layers = [
+          '0 – 4,900',
+          '5,000 – 9,999',
+          '10,000 – 14,999',
+          '15,000 – 20,000'
+        ];
+        var colors = [
+          '#ffb3b3',
+          '#fe7777',
+          '#eb0000',
+          '#8d0101',
+          '#750000'
+        ];
+
+        // create legend
+        for (i = 0; i < layers.length; i++) {
+          var layer = layers[i];
+          var color = colors[i];
+          var item = document.createElement('div');
+          var key = document.createElement('span');
+          key.className = 'legend-key';
+          key.style.backgroundColor = color;
+
+          var value = document.createElement('span');
+          value.innerHTML = layer;
+          item.appendChild(key);
+          item.appendChild(value);
+          legend.appendChild(item);
+        }
+      });
+    </script>
+  </body>
+</html>
