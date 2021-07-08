@@ -71,8 +71,8 @@
   <body>
     <div id="map"></div>
     <div class="map-overlay" id="features">
-      <h2>Violent Incidents 2019</h2>
-      <div id="pd"><p></p></div>
+      <h2>Coca Cultivation 2019</h2>
+      <div id="pd"><p>By hectares</p></div>
     </div>
     <div class="map-overlay" id="legend"></div>
 
@@ -85,7 +85,7 @@
         container: 'map', // container id
         zoom: 5,
 center: [-73.5089976, 4.5673309],
-        style: 'mapbox://styles/daltonwb/ckqu8ysw80wbf17o1zmf2blzv' // map style URL from Mapbox Studio
+        style: 'mapbox://styles/daltonwb/ckqu8i48x07tb18lct794qcl4' // map style URL from Mapbox Studio
       });
 
       // wait for map to load before adjusting it
@@ -95,17 +95,17 @@ center: [-73.5089976, 4.5673309],
 
         // define layer names
         var layers = [
-          '0 – 14',
-          '15 – 35',
-          '36 – 55',
-          '56 – 100'
+          '0 – 4,900',
+          '5,000 – 9,999',
+          '10,000 – 14,999',
+          '15,000 – 20,000'
         ];
         var colors = [
-          '#b5ff9e',
-          '#54fd21',
-          '#2aa305',
-          '#289806',
-          '#0f4d27'
+          '#ffb3b3',
+          '#fe7777',
+          '#eb0000',
+          '#8d0101',
+          '#750000'
         ];
 
         // create legend
